@@ -1,0 +1,54 @@
+/*
+	设置一系列输入框样式
+*/
+
+.col-sm-2 {
+	width:80px;
+	padding: 4px;
+	text-align:center;
+	font-weight:normal;
+}
+
+.col-sm-10{
+	heigth:100%;
+	width:60%;
+	padding-left: 2px;
+}
+
+.form-group{
+	display: inline-block;
+	
+}
+/*
+	按钮样式设置
+*/
+.btn{
+	background-color:#428BCA;
+	heigth:80px;
+	width:70px;
+	float:rigth;
+}
+#submit{
+	width:100px;
+	padding-left: 75%;
+}
+
+/*
+	入库信息样式设置
+*/
+.sub-header{
+	top: 0px;
+	margin-top: 20px;
+	font-weight:bold;
+}
+
+/*
+  日历样式设置
+*/
+
+#data-input{
+	margin-left:2px;
+}
+
+
+

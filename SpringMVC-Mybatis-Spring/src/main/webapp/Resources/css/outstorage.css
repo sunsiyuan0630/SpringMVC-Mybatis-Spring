@@ -1,0 +1,42 @@
+/*
+	璁剧疆涓�郴鍒楄緭鍏ユ鏍峰紡
+*/
+
+.col-sm-2 {
+	width:80px;
+	padding: 4px;
+	text-align:center;
+	font-weight:normal;
+}
+
+.col-sm-10{
+	heigth:100%;
+	width:60%;
+	padding-left: 2px;
+}
+
+.form-group{
+	display: inline-block;
+	
+}
+/*
+	鎸夐挳鏍峰紡璁剧疆
+*/
+
+/* #submit{
+	width:100px;
+	padding-left: 75%;
+} */
+
+/*
+	鍑哄簱淇℃伅鏍峰紡璁剧疆
+*/
+.sub-header{
+	top: 0px;
+	margin-top: 20px;
+	font-weight:bold;
+}
+
+
+
+

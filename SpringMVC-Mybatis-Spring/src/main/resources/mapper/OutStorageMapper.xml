@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssy.child.mapper.OutStorageMapper">
+ <resultMap id="BaseResultMap" type="com.ssy.child.model.OutStorage" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goodId" property="goodId" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="sellPrice" property="sellPrice" jdbcType="DECIMAL" />
+    <result column="date" property="date" jdbcType="TIMESTAMP"/>
+    <result column="people" property="people" jdbcType="INTEGER"/>
+    <result column="desc" property="desc" jdbcType="VARCHAR"/>
+ </resultMap>
+ <!-- 
+ <resultMap id="OutStorageResultMap" type="com.child.model.OutStorageResultMap" >
+ 	<result column="id" property="id" jdbcType="INTEGER"/>
+ 	<result column="goodName" property="goodName" jdbcType="VARCHAR"/>
+ 	<result column="goodId" property="goodId" jdbcType="VARCHAR"/>
+ 	<result column="goodSupplier" property="goodSupplier" jdbcType="VARCHAR"/>
+ 	<result column="goodNumber" property="goodNumber" jdbcType="INTEGER"/>
+ 	<result column="lastUpdateTime" property="lastUpdateTime" jdbcType="TIMESTAMP"/>
+ </resultMap>
+  -->
+	<select id="selectAllResult" resultType="OutStorageResultMap">
+      	select r.id as id,g.goodName as goodName,g.goodId as goodId,g.goodSupplier as goodSupplier,r.goodNumber as goodNumber,r.lastUpdateTime as lastUpdateTime from tb_goodrest r left join tb_goods g on g.id=r.goodId 
+    </select>
+     
+    <select id="selectAllResultWithGoodName" parameterType="java.lang.String" resultType="OutStorageResultMap">
+    	select r.id as id,g.goodName as goodName,g.goodId as goodId,g.goodSupplier as goodSupplier,r.goodNumber as goodNumber,r.lastUpdateTime as lastUpdateTime from tb_goodrest r 
+    	left join tb_goods g on g.id = r.goodId 
+    	where g.goodName like CONCAT('%',#{goodName},'%')
+    </select>
+    
+    <select id="selectAllResultWithGoodId" parameterType="java.lang.Integer"  resultType="OutStorageResultMap">
+    	select r.id as id,g.goodName as goodName,g.goodId as goodId,g.goodSupplier as goodSupplier,r.goodNumber as goodNumber,r.lastUpdateTime as lastUpdateTime
+    	from tb_goodrest r
+    	left join tb_goods g on g.id = r.goodId
+    	where g.goodId LIKE CONCAT('%',#{goodId},'%' )
+    </select> 
+   
+    <select id="selectAllResultWithGoodNameAndGoodId"  resultType="OutStorageResultMap">
+    	select r.id as id,g.goodName as goodName,g.goodId as goodId,g.goodSupplier as goodSupplier,r.goodNumber as goodNumber,r.lastUpdateTime as lastUpdateTime from tb_goodrest r 
+    	left join tb_goods g on g.id = r.goodId 
+    	where g.goodName like CONCAT('%',#{goodName},'%') and g.goodId like CONCAT('%',#{goodId},'%' )
+    </select>
+     
+    <insert id="insertOutStorage" parameterType="OutStorage" useGeneratedKeys="true" keyProperty="id">
+    	insert into tb_outstorage(goodId,number,sellPrice,date,people,description) values (#{goodId}, #{number}, #{sellPrice}, #{date},#{people},#{desc})
+    </insert>
+    
+    <select id="selectAllOutstorageRecord" resultType="OutStorageRecord">
+    	select g.goodName as goodName,g.goodId as goodCode,g.goodSupplier as goodSupplier,g.goodSpeci as goodSpeci,t.sellPrice as sellPrice,t.number as number,t.date as date,u.name as people
+    	from tb_outstorage t 
+    	left join tb_goods g on g.id = t.goodId
+    	left join tb_users u on u.id = t.people
+    	order by t.date desc
+    </select>
+     
+</mapper>

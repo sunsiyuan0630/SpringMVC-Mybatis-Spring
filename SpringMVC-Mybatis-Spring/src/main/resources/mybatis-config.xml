@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+  <settings>
+    <setting name="cacheEnabled" value="true"/>
+    <setting name="lazyLoadingEnabled" value="false"/>
+    <setting name="aggressiveLazyLoading" value="true"/>
+    <setting name="logImpl" value="LOG4J"/>
+  </settings>
+
+  <typeAliases>
+    <package name="com.ssy.child.model"/>
+  </typeAliases>
+
+<plugins>
+  <plugin interceptor="com.github.pagehelper.PageHelper">
+    <property name="dialect" value="mysql"/>
+    <property name="pageSizeZero" value="true"/>
+    <property name="reasonable" value="true"/>
+  </plugin>
+</plugins>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC">
+				<property name="" value="" />
+			</transactionManager>
+			<dataSource type="UNPOOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/systemdb?characterEncoding=GBK " />
+				<property name="username" value="root" />
+				<property name="password" value="root"/>
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<mapper resource="mapper/GoodsMapper.xml" />
+		<mapper resource="mapper/CountryMapper.xml" />
+		<mapper resource="mapper/GoodRestMapper.xml" />
+		<mapper resource="mapper/OutStorageMapper.xml"/>
+	</mappers>
+
+</configuration>

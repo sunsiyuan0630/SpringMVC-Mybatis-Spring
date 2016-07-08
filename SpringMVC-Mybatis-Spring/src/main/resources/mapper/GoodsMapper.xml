@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssy.child.mapper.GoodsMapper">
+	<resultMap id="BaseResultMap" type="com.ssy.child.model.Goods" >
+	    <id column="id" property="id" jdbcType="INTEGER" />
+	    <result column="goodName" property="goodName" jdbcType="VARCHAR" />
+	    <result column="goodId" property="goodId" jdbcType="VARCHAR" />
+	    <result column="goodSpeci" property="goodSpeci" jdbcType="VARCHAR" />
+	    <result column="goodSupplier" property="goodSupplier" jdbcType="VARCHAR" />   
+	</resultMap>
+    <select id="selectAll" resultType="Goods">
+      select * from tb_goods
+    </select>
+    <insert id="saveGood"  parameterType="com.child.model.Goods"  useGeneratedKeys="true" keyProperty="id">
+    	insert into tb_goods(goodName,goodId,goodSpeci,goodSupplier) values(#{goodName}, #{goodId}, #{goodSpeci}, #{goodSupplier})
+    </insert>
+    
+    <select id="selectGoodsByNameAndId" parameterType="java.lang.String" resultType="Goods">
+        select * from tb_goods where tb_goods.goodName = #{userName} and tb_goods.goodId = #{goodId}
+    </select>
+    
+</mapper>
